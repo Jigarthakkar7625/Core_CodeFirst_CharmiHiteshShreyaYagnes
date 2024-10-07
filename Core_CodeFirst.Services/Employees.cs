@@ -42,7 +42,7 @@ namespace Core_CodeFirst.Services
 
         public List<Employee> GetAllEmployee()
         {
-            return new List<Employee> { new Employee { Id = 1, Address = "Ahmedabad", Name = "Jigar" } }; // DB
+            return new List<Employee> { new Employee { Id = 1, Address = "Surat", Name = "Tushar" } }; // DB
         }
 
     }

@@ -39,7 +39,8 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddSingleton<IEmployees, Employees>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-//builder.Services.AddSingleton<Error>();
+
+builder.Services.AddSingleton<Error>();
 
 var app = builder.Build();
 
@@ -53,6 +54,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Custom middleware
 app.UseMiddleware<Error>();
 
 app.UseCors(builder => builder

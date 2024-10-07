@@ -6,30 +6,51 @@ using System.Threading.Tasks;
 namespace Core_CodeFirst
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class Error 
+    public class Error : IMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public Error(RequestDelegate next)
-        {
-            _next = next;
-        }
+        //public Error(RequestDelegate next)
+        //{
+        //    _next = next;
+        //}
 
-        public Task Invoke(HttpContext httpContext)
-        {
+        //public Task Invoke(HttpContext httpContext)
+        //{
 
+        //    try
+        //    {
+        //        return _next(httpContext);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        httpContext.Response.StatusCode = 500;
+
+        //        throw;
+        //    }
+
+        //}
+
+
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        {
             try
             {
-                return _next(httpContext);
+
+
+                // Next process
+
+                await next(context);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                httpContext.Response.StatusCode = 500;
-
-                throw;
+                //Globally, Database insert, Text filee add log
+                var traceId = Guid.NewGuid();
+                //_logger.LogError($"Error occure while processing the request, TraceId : ${traceId}," +
+                //    $" Message : ${ex.Message}, StackTrace: ${ex.StackTrace}");
             }
-
         }
+
 
         //public Task InvokeAsync(HttpContext context, RequestDelegate next)
         //{
@@ -43,7 +64,7 @@ namespace Core_CodeFirst
 
         //        throw;
         //    }
-            
+
         //    //throw new NotImplementedException();
         //}
     }

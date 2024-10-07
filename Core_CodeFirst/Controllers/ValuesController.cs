@@ -77,8 +77,21 @@ namespace Core_CodeFirst.Controllers
         [HttpDelete("{id}")]
         public async Task<object> Delete(int id)
         {
-            await _contextAccessor.Employees.ToListAsync();
+            // 98 >> Time taking ya to Error  ?
+            await _contextAccessor.Employees.ToListAsync(); // 98
             return Ok();
         }
+
+        [HttpDelete("{id}")]
+        public object Delete123(int id)
+        {
+            // 98 >> Time taking ya to Error  ?
+            _contextAccessor.Employees.ToListAsync(); // 98
+            return Ok();
+        }
+
+        // Async and Await : 
+
+        // Sync and Async
     }
 }

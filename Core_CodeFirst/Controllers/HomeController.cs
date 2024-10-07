@@ -4,48 +4,77 @@ using System.Diagnostics;
 
 namespace Core_CodeFirst.Controllers
 {
+
+    // TDD >> Test driven development
+    // UTC : Unit test cases
+    // Developer >> Developer >>
+    // Code coverage , Testing function,
+
+    //UTC >> Xunit, NUnit, MS TEST UNIT
+
+
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ITransient _transientService1;
+        //private readonly ITransient _transientService1;
         private readonly IEmployees _employeesService1;
-        private readonly ITransient _transientService2; // No life time
-        private readonly IScoped _scopedService1;
-        private readonly IScoped _scopedService2; // Refresh
-        private readonly ISingleton _singletonService1; // Permenet
-        private readonly ISingleton _singletonService2;
+        //private readonly ITransient _transientService2; // No life time
+        //private readonly IScoped _scopedService1;
+        //private readonly IScoped _scopedService2; // Refresh
+        //private readonly ISingleton _singletonService1; // Permenet
+        //private readonly ISingleton _singletonService2;
 
         //private readonly ITransient _employees;
 
-        //public HomeController(IEmployees employees) // Depency Injection
-        public HomeController(ILogger<HomeController> logger, ITransient transientService1, ITransient transientService2, IScoped  scopedService1, IScoped scopedService2, ISingleton singletonService1, ISingleton singletonService2)
+        public HomeController(IEmployees employees) { 
+
+            _employeesService1 = employees;
+        
+        } // Depency Injection
+        public HomeController( )
         {
 
             //_employeesService1 = employees;
-            _logger = logger;
-            _transientService1 = transientService1;
-            _transientService2 = transientService2;
-            _scopedService1 = scopedService1;
-            _scopedService2 = scopedService2;
-            _singletonService1 = singletonService1;
-            _singletonService2 = singletonService2;
+            //_logger = logger;
+            //_transientService1 = transientService1;
+            //_transientService2 = transientService2;
+            //_scopedService1 = scopedService1;
+            //_scopedService2 = scopedService2;
+            //_singletonService1 = singletonService1;
+            //_singletonService2 = singletonService2;
             //_employees = employees;
         }
 
         public IActionResult Index()
         {
 
+            try
+            {
+                int a = 10;
+                int b = 0;
+                int c = a / b;
+            }
+            catch (Exception ex)
+            {
+
+
+                //throw;
+            }
+
+            _employeesService1.GetAllEmployee();
+
             //var getALLEMp = _employeesService1.GetAllEmployee(); // DB mathi record ave che
             // N Tier
 
 
             //var a = _employees.GetAllEmployee();
-            ViewBag.transient1 = _transientService1.GetOperationID().ToString();
-            ViewBag.transient2 = _transientService2.GetOperationID().ToString();
-            ViewBag.scoped1 = _scopedService1.GetOperationID().ToString();
-            ViewBag.scoped2 = _scopedService2.GetOperationID().ToString();
-            ViewBag.singleton1 = _singletonService1.GetOperationID().ToString();
-            ViewBag.singleton2 = _singletonService2.GetOperationID().ToString();
+            //ViewBag.transient1 = _transientService1.GetOperationID().ToString();
+            //ViewBag.transient2 = _transientService2.GetOperationID().ToString();
+            //ViewBag.scoped1 = _scopedService1.GetOperationID().ToString();
+            //ViewBag.scoped2 = _scopedService2.GetOperationID().ToString();
+            //ViewBag.singleton1 = _singletonService1.GetOperationID().ToString();
+            //ViewBag.singleton2 = _singletonService2.GetOperationID().ToString();
 
             return View();
         }

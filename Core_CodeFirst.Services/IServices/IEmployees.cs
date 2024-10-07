@@ -11,4 +11,7 @@ namespace Core_CodeFirst.Services.IServices
     {
         List<Employee> GetAllEmployee();
     }
+
+
+    // INTERFACE >> Method declaration >>> NO Implementation
 }
